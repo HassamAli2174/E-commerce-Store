@@ -9,7 +9,7 @@ class Splash extends StatelessWidget {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute.new(builder: (context) => MainScreen()),
+        MaterialPageRoute(builder: (context) => const MainScreen()),
       );
     });
 
@@ -17,7 +17,6 @@ class Splash extends StatelessWidget {
       backgroundColor: Colors.deepPurple,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             'assets/splash.png',

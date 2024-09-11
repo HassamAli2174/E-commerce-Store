@@ -21,6 +21,9 @@ class _MainScreenState extends State<MainScreen> {
   fetchProducts() async {
     EcommerceService services = EcommerceService();
     _products = await services.fetchProducts();
+    setState(() {
+      _products;
+    });
     print(_products.toString());
   }
 
@@ -41,7 +44,13 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
       body: PageView(
-        children: [HomePage(), Text('Page2'), Text('Page2')],
+        children: [
+          HomePage(
+            products: _products,
+          ),
+          Text('Page2'),
+          Text('Page3')
+        ],
       ),
     );
   }
