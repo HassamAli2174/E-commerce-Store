@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/Screens/Pages/home_page.dart';
+import 'package:ecommerce_app/Screens/Pages/shopping_cart.dart';
+import 'package:ecommerce_app/Screens/Pages/users_list.dart';
 import 'package:ecommerce_app/Services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -47,12 +49,13 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
       body: PageView(
+        controller: _pageController,
         children: [
           HomePage(
             products: _products,
           ),
-          const Text('Page2'),
-          const Text('Page3')
+          ShoppingCart(products: _products),
+          const UsersList()
         ],
       ),
     );
