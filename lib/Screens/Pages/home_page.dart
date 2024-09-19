@@ -1,9 +1,7 @@
-// import 'package:ecommerce_app/screens/product_details.dart';
+import 'package:ecommerce_app/Screens/product_details.dart';
 import 'package:ecommerce_app/screens/widgets/custom_app_bar.dart';
 import 'package:ecommerce_app/screens/widgets/product_card.dart';
 import 'package:ecommerce_app/screens/widgets/skeleton_product_card.dart';
-// import 'package:ecommerce_app/screens/widgets/product_card.dart';
-// import 'package:ecommerce_app/screens/widgets/skeleton_product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -71,40 +69,43 @@ class HomePageState extends State<HomePage> {
                     }),
               )),
           Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: widget.products.isEmpty
-                      ? Skeletonizer(
-                          enabled: true,
-                          child: ListView.builder(
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                return const SkeletonProductCard();
-                              }))
-                      : ListView.builder(
-                          itemCount: widget.products.length,
-                          itemBuilder: (context, index) {
-                            final product = widget.products[index];
-                            // if (selectedCategory == "All" ||
-                            //     selectedCategory == product["category"])
-                            {
-                              return GestureDetector(
-                                // onTap: () {
-                                //   Navigator.push(
-                                //       context,
-                                //       MaterialPageRoute(
-                                //           builder: (context) => ProductDetails(
-                                //               product: product)));
-                                // },
-                                child: ProductCard(
-                                  product: product,
-                                ),
-                              );
-                            }
-                            // else {
-                            //   return Container();
-                            // }
-                          })))
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: widget.products.isEmpty
+                  ? Skeletonizer(
+                      enabled: true,
+                      child: ListView.builder(
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return const SkeletonProductCard();
+                        },
+                      ),
+                    )
+                  : ListView.builder(
+                      itemCount: widget.products.length,
+                      itemBuilder: (context, index) {
+                        final product = widget.products[index];
+                        if (selectedCategory == "All" ||
+                            selectedCategory == product["category"]) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProductDetails(product: product)));
+                            },
+                            child: ProductCard(
+                              product: product,
+                            ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+            ),
+          ),
         ],
       ),
     );

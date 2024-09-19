@@ -48,8 +48,8 @@ class _MainScreenState extends State<MainScreen> {
           HomePage(
             products: _products,
           ),
-          Text('Page2'),
-          Text('Page3')
+          const Text('Page2'),
+          const Text('Page3')
         ],
       ),
     );
