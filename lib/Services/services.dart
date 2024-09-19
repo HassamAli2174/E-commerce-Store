@@ -18,9 +18,9 @@ class EcommerceServices {
     }
   }
 
-    Future<List<dynamic>> fetchUsers() async {
+  Future<List<dynamic>> fetchUsers() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl/products'));
+      final response = await http.get(Uri.parse('$baseUrl/users'));
       if (response.statusCode == 200) {
         return jsonDecode(response.body) as List<dynamic>;
       } else {

@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/Services/services.dart';
 import 'package:ecommerce_app/screens/pages/home_page.dart';
 import 'package:ecommerce_app/screens/pages/shopping_cart.dart';
 import 'package:ecommerce_app/screens/pages/users_list.dart';
@@ -18,8 +17,21 @@ class MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    fetchProducts();
     super.initState();
+    fetchProducts();
+    _pageController.addListener(() {
+      if (_pageController.page!.round() != _selectedIndex) {
+        setState(() {
+          _selectedIndex = _pageController.page!.round();
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   fetchProducts() async {
@@ -43,6 +55,8 @@ class MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.shopping_cart), label: 'Cart'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person), label: 'Users List'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.payment_rounded), label: 'Payment'),
         ],
         onTap: (index) {
           setState(() {
