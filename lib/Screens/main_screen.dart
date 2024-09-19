@@ -1,21 +1,21 @@
-import 'package:ecommerce_app/Screens/Pages/home_page.dart';
-import 'package:ecommerce_app/Screens/Pages/shopping_cart.dart';
-import 'package:ecommerce_app/Screens/Pages/users_list.dart';
 import 'package:ecommerce_app/Services/services.dart';
+import 'package:ecommerce_app/screens/pages/home_page.dart';
+import 'package:ecommerce_app/screens/pages/shopping_cart.dart';
+import 'package:ecommerce_app/screens/pages/users_list.dart';
+import 'package:ecommerce_app/services/services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
-
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<StatefulWidget> createState() => MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
-  PageController _pageController = PageController(initialPage: 0);
-  int _selectedTab = 0;
+class MainScreenState extends State<MainScreen> {
+  final PageController _pageController = PageController(initialPage: 0);
+  int _selectedIndex = 0;
   List<dynamic> _products = [];
+
   @override
   void initState() {
     fetchProducts();
@@ -23,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   fetchProducts() async {
-    EcommerceService services = EcommerceService();
+    EcommerceServices services = EcommerceServices();
     _products = await services.fetchProducts();
     setState(() {
       _products;
@@ -35,17 +35,20 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedTab,
+        currentIndex: _selectedIndex,
         selectedItemColor: Colors.deepPurple,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'User List'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person), label: 'Users List'),
         ],
         onTap: (index) {
-          _selectedTab = index;
-          _pageController.jumpToPage(index);
+          setState(() {
+            _selectedIndex = index;
+            _pageController.jumpToPage(index);
+          });
         },
       ),
       body: PageView(
@@ -54,7 +57,9 @@ class _MainScreenState extends State<MainScreen> {
           HomePage(
             products: _products,
           ),
-          ShoppingCart(products: _products),
+          ShoppingCart(
+            products: _products,
+          ),
           const UsersList()
         ],
       ),

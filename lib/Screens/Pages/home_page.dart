@@ -18,7 +18,7 @@ class HomePageState extends State<HomePage> {
     "men's clothing",
     "women's clothing",
     "electronics",
-    "jewelry"
+    "jewelery"
   ];
   String selectedCategory = "All";
 
@@ -58,6 +58,7 @@ class HomePageState extends State<HomePage> {
                           child: Text(
                             categories[index],
                             style: TextStyle(
+                                fontStyle: FontStyle.italic,
                                 color: selectedCategory == categories[index]
                                     ? Colors.white
                                     : Colors.black,

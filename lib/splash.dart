@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/Screens/main_screen.dart';
+import 'package:ecommerce_app/Screens/main_Screen.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatelessWidget {

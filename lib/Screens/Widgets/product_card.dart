@@ -29,7 +29,9 @@ class ProductCard extends StatelessWidget {
                 Text(
                   product["title"],
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                      fontStyle: FontStyle.italic,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -37,11 +39,9 @@ class ProductCard extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "\$${product["price"].toStringAsFixed(2)}",
-                  style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple),
+                  'Price: ${product['price']}',
+                  style:
+                      const TextStyle(fontSize: 14, color: Colors.deepPurple),
                 ),
                 const SizedBox(
                   height: 8,
