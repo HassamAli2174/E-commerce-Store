@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/Screens/Pages/home_page.dart';
 import 'package:ecommerce_app/Services/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,6 +11,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  PageController _pageController = PageController(initialPage: 0);
   int _selectedTab = 0;
   List<dynamic> _products = [];
   @override
@@ -41,6 +43,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
         onTap: (index) {
           _selectedTab = index;
+          _pageController.jumpToPage(index);
         },
       ),
       body: PageView(
